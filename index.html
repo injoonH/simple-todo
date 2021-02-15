@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./main.js"></script>
+  <title>You Are Awesome!</title>
+</head>
+
+<body>
+  <header>
+    <h1>My Todo List</h1>
+    <form>
+      <input class="todo-input" type="text" placeholder="write todo">
+    </form>
+  </header>
+
+  <div class="toggle invisible">
+    <h3 class="toggle__pending">Pending</h3>
+    <h3 class="toggle__finished">Finished</h3>
+  </div>
+
+  <main>
+    <div class="pending-container">
+      <article class="pending">
+        <h2>Pending</h2>
+        <ul></ul>
+      </article>
+    </div>
+    <div class="finished-container">
+      <article class="finished">
+        <h2>Finished</h2>
+        <ul></ul>
+      </article>
+    </div>
+  </main>
+</body>
+
+</html>
