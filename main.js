@@ -57,7 +57,10 @@ function makeID() {
 function handleResize() {
     if (window.innerWidth < 700) {
         toggle.classList.remove("invisible");
-        finishedContainer.classList.add("invisible");
+        if (togglePending.classList.contains("toggle__focused"))
+            finishedContainer.classList.add("invisible");
+        else if (toggleFinished.classList.contains("toggle__focused"))
+            pendingContainer.classList.add("invisible");
     } else {
         toggle.classList.add("invisible");
         pendingContainer.classList.remove("invisible");
