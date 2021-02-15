@@ -9,31 +9,27 @@ const togglePending = document.querySelector(".toggle__pending");
 const toggleFinished = document.querySelector(".toggle__finished");
 
 document.addEventListener("DOMContentLoaded", () => {
+    handleResize();
     for (const [key, val] of Object.entries(getFromLocal("pending")))
         addToHTML("pending", { id: key, content: val });
     for (const [key, val] of Object.entries(getFromLocal("finished")))
         addToHTML("finished", { id: key, content: val });
 });
 
-window.addEventListener("resize", () => {
-    if (window.innerWidth < 700) {
-        toggle.classList.remove("invisible");
-        finishedContainer.classList.add("invisible");
-    } else {
-        toggle.classList.add("invisible");
-        pendingContainer.classList.remove("invisible");
-        finishedContainer.classList.remove("invisible");
-    }
-});
+window.addEventListener("resize", handleResize);
 
 togglePending.addEventListener("click", () => {
     pendingContainer.classList.remove("invisible");
     finishedContainer.classList.add("invisible");
+    togglePending.classList.add("toggle__focused");
+    toggleFinished.classList.remove("toggle__focused");
 });
 
 toggleFinished.addEventListener("click", () => {
     pendingContainer.classList.add("invisible");
     finishedContainer.classList.remove("invisible");
+    togglePending.classList.remove("toggle__focused");
+    toggleFinished.classList.add("toggle__focused");
 });
 
 todoForm.addEventListener("submit", (evt) => {
@@ -56,6 +52,17 @@ function makeID() {
     const second = time.getSeconds().toString().padStart(2, "0");
     const millisecond = time.getMilliseconds().toString().padStart(3, "0");
     return `${year}${month}${date}${hour}${minute}${second}${millisecond}`;
+}
+
+function handleResize() {
+    if (window.innerWidth < 700) {
+        toggle.classList.remove("invisible");
+        finishedContainer.classList.add("invisible");
+    } else {
+        toggle.classList.add("invisible");
+        pendingContainer.classList.remove("invisible");
+        finishedContainer.classList.remove("invisible");
+    }
 }
 
 function saveLocal(type, todo) {
